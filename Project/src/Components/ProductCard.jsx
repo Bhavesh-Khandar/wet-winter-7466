@@ -26,7 +26,7 @@ export default function ProductCard({
   console.log();
   return (
     <Center py={12}>
-      <RouterLink to={`/product/${id}`} >
+      <RouterLink to={`/product/${id}`}>
         <Box
           role={'group'}
           p={6}
@@ -37,12 +37,12 @@ export default function ProductCard({
           rounded={'lg'}
           pos={'relative'}
           zIndex={1}
-          height={'450px'}>
+          height={'auto'}>
           <Box
             rounded={'lg'}
             mt={-12}
             pos={'relative'}
-            height={'200px'}
+            height={'auto'}
             _after={{
               transition: 'all .3s ease',
               content: '""',
@@ -62,7 +62,7 @@ export default function ProductCard({
             }}>
             <Image
               rounded={'lg'}
-              height={200}
+              height={'auto'}
               width={282}
               objectFit={'cover'}
               src={image}
