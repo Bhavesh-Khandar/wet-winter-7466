@@ -28,7 +28,7 @@ export default function ProductDetails() {
   console.log(id);
   useEffect(() => {
     axios
-      .get(`https://fakestoreapi.com/products/${id}`)
+      .get(`http://localhost:3000/sephora/${id}`)
       .then(({ data }) => {
         setProducts(data);
       })
@@ -36,6 +36,17 @@ export default function ProductDetails() {
   }, [id]);
   const { image, description, category, title, price, rating, count } = product;
   console.log(product);
+  function addtocartrequest(id) {
+    console.log(id);
+    axios
+      .post('http://localhost:3000/cart', product)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
   return (
     <Container maxW={'7xl'}>
       <SimpleGrid
@@ -173,6 +184,7 @@ export default function ProductDetails() {
           </Stack>
           <RouterLink to={`/cart/${id}`}>
             <Button
+              onClick={() => addtocartrequest(id)}
               rounded={'none'}
               w={'full'}
               mt={8}

@@ -10,13 +10,17 @@
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "axios": "^1.2.1",
+    "bootstrap": "^5.2.3",
     "framer-motion": "^4.1.17",
     "react": "18.2.0",
+    "react-bootstrap": "^2.7.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.7.1",
     "react-router-dom": "^6.4.5",
     "react-scripts": "4.0.0",
-    "router-dom": "^2.2.9"
+    "react-slick": "^0.29.0",
+    "router-dom": "^2.2.9",
+    "slick-carousel": "^1.8.1"
   },
   "scripts": {
     "start": "react-scripts start",
