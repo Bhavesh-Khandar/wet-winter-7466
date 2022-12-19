@@ -17,6 +17,7 @@ import {
 import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import axios from 'axios';
+import { Link as RouterLink } from 'react-router-dom';
 
 export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
@@ -40,7 +41,6 @@ export default function Register() {
       .catch(function (error) {
         console.log(error);
       });
-    window.location.href = 'http://localhost:3001/login';
   }
   return (
     <Flex
@@ -53,7 +53,6 @@ export default function Register() {
           <Heading fontSize={'4xl'} textAlign={'center'}>
             Sign up
           </Heading>
-          
         </Stack>
         <Box
           rounded={'lg'}
@@ -98,17 +97,19 @@ export default function Register() {
               </InputGroup>
             </FormControl>
             <Stack spacing={10} pt={2}>
-              <Button
-                loadingText="Submitting"
-                size="lg"
-                bg={'blue.400'}
-                color={'white'}
-                onClick={registration}
-                _hover={{
-                  bg: 'blue.500',
-                }}>
-                Sign up
-              </Button>
+              <RouterLink to="/login">
+                <Button
+                  loadingText="Submitting"
+                  size="lg"
+                  bg={'blue.400'}
+                  color={'white'}
+                  onClick={registration}
+                  _hover={{
+                    bg: 'blue.500',
+                  }}>
+                  Sign up
+                </Button>
+              </RouterLink>
             </Stack>
             <Stack pt={6}>
               <Text align={'center'}>

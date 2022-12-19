@@ -15,10 +15,16 @@ import {
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
-
+import {
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+} from '@chakra-ui/react';
 export default function Login() {
   const [form, setForm] = useState({});
   const [data, setData] = useState([]);
+  const [login, isLogin] = useState(false);
   const handleOnChange = (e) => {
     setForm({ ...form, [e.target.id]: e.target.value });
     console.log(form);
@@ -39,24 +45,28 @@ export default function Login() {
   }, []);
 
   function signIn() {
-    return (
-      <div>
-        {data &&
-          data?.length > 0 &&
-          data.map((e) => {
-            if (e.email == form.email && e.password == form.password) {
-              // return <Navigate to="/products" />;
-              window.location.href = 'http://localhost:3001/products';
-            } else {
-              console.log('failure');
-            }
-          })}
-      </div>
-    );
+    {
+      data &&
+        data?.length > 0 &&
+        data.filter((e) => {
+          if (e.email == form.email && e.password == form.password) {
+            // return <Navigate to="/products" />;
+            isLogin(true);
+          } else {
+            console.log('failure');
+            <Alert status="error">
+              <AlertIcon />
+              There was an error processing your request
+            </Alert>;
+          }
+        });
+    }
   }
 
   console.log(data);
-  return (
+  return login ? (
+    <Navigate to="/products" />
+  ) : (
     <Flex
       minH={'100vh'}
       align={'center'}

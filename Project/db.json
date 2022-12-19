@@ -27,6 +27,34 @@
       "email": "n",
       "password": "n",
       "id": 5
+    },
+    {
+      "firstName": "krishna",
+      "lastName": "vasudev",
+      "email": "krishna@gmail.com",
+      "password": "krishna",
+      "id": 6
+    },
+    {
+      "firstName": "f",
+      "lastName": "f",
+      "email": "f",
+      "password": "f",
+      "id": 7
+    },
+    {
+      "firstName": "h",
+      "lastName": "h",
+      "email": "h",
+      "password": "h",
+      "id": 8
+    },
+    {
+      "firstName": "m",
+      "lastName": "c",
+      "email": "b",
+      "password": "b",
+      "id": 9
     }
   ],
   "cart": [
