@@ -34,7 +34,16 @@ export default function ProductDetails() {
       })
       .catch((err) => console.log(err));
   }, [id]);
-  const { image, description, category, title, price, rating, count } = product;
+  const {
+    image,
+    description,
+    category,
+    title,
+    price,
+    rating,
+    count,
+    prodname,
+  } = product;
   console.log(product);
   function addtocartrequest(id) {
     console.log(id);
@@ -72,6 +81,12 @@ export default function ProductDetails() {
               fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}>
               {title}
             </Heading>
+            <Text
+              color={useColorModeValue('gray.900', 'gray.400')}
+              fontWeight={300}
+              fontSize={'2xl'}>
+              {prodname}
+            </Text>
             <Text
               color={useColorModeValue('gray.900', 'gray.400')}
               fontWeight={300}

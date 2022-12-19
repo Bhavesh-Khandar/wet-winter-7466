@@ -1,40 +1,82 @@
-import { Flex, Grid, GridItem } from '@chakra-ui/react';
+import { Button, Flex, Grid, GridItem, Badge, Text } from '@chakra-ui/react';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import CartCard from '../Components/CartCard';
+import ModelPage from '../Components/Model';
 
 const IMAGE =
   'https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80';
 
 export default function CartPage() {
   const [cart, setCart] = useState({});
+  const [totalval, setTotalValue] = useState(0);
   const { id } = useParams();
   const [counter, setCounter] = useState(1);
   const { image, price, title, count } = cart;
+  const total = useRef(0);
+
   const handleCount = (val) => {
     setCounter(counter + val);
   };
-  useEffect(() => {
+  // console.log('totalvalue', totalval);
+  console.log('totalcurrent', total.current);
+  const getCartData = () => {
+    console.log('getCartData');
     axios.get(`http://localhost:3000/cart`).then(({ data }) => {
       setCart(data);
+      console.log('data length', data.length);
+      // setTotal(data.length);
     });
-  }, [id]);
+  };
+  useEffect(() => {
+    getCartData();
+  }, []);
+
   console.log(cart);
+  const removeproddefination = (e) => {
+    console.log('removeproddefination');
+    let id = e.id;
+
+    axios
+      .delete(`http://localhost:3000/cart/${id}`)
+      .then(function (response) {
+        console.log('delete', response);
+        getCartData();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
   return (
     <div>
+      {/* <Badge variant="solid" colorScheme="green">
+        {total.current}
+      </Badge> */}
       <Grid templateColumns="repeat(3, 1fr)" gap={6}>
         {cart &&
           cart?.length > 0 &&
           cart.map((e) => {
+            let ans = e.price.split(' ');
+            let final = Number(ans[1].split(',').join(''));
+            console.log('FINAL', final);
+            total.current = total.current + final;
+            console.log('total', total.current);
+            // setTotalValue(total.current);
             return (
-              <GridItem key={e.id}>
-                {console.log(e)}
-                <CartCard cartdata={e} />
-              </GridItem>
+              <>
+                <GridItem key={e.id}>
+                  <CartCard
+                    key={e.id}
+                    removeproddefination={() => removeproddefination(e)}
+                    cartdata={e}
+                  />
+                </GridItem>
+              </>
             );
           })}
       </Grid>
+      <ModelPage />
     </div>
     // <Center py={12}>
     //   <Box

@@ -16,10 +16,32 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import axios from 'axios';
 
 export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
-
+  const [form, setForm] = useState({});
+  const handleOnChange = (e) => {
+    setForm({ ...form, [e.target.id]: e.target.value });
+    console.log(form);
+  };
+  function registration() {
+    // console.log(id);
+    axios
+      .post('http://localhost:3000/register', {
+        firstName: form.firstName,
+        lastName: form.lastName,
+        email: form.email,
+        password: form.password,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    window.location.href = 'http://localhost:3001/login';
+  }
   return (
     <Flex
       minH={'100vh'}
@@ -31,9 +53,7 @@ export default function Register() {
           <Heading fontSize={'4xl'} textAlign={'center'}>
             Sign up
           </Heading>
-          <Text fontSize={'lg'} color={'gray.600'}>
-            to enjoy all of our cool features ✌️
-          </Text>
+          
         </Stack>
         <Box
           rounded={'lg'}
@@ -45,24 +65,27 @@ export default function Register() {
               <Box>
                 <FormControl id="firstName" isRequired>
                   <FormLabel>First Name</FormLabel>
-                  <Input type="text" />
+                  <Input onChange={(e) => handleOnChange(e)} type="text" />
                 </FormControl>
               </Box>
               <Box>
                 <FormControl id="lastName">
                   <FormLabel>Last Name</FormLabel>
-                  <Input type="text" />
+                  <Input onChange={(e) => handleOnChange(e)} type="text" />
                 </FormControl>
               </Box>
             </HStack>
             <FormControl id="email" isRequired>
               <FormLabel>Email address</FormLabel>
-              <Input type="email" />
+              <Input onChange={(e) => handleOnChange(e)} type="email" />
             </FormControl>
             <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
               <InputGroup>
-                <Input type={showPassword ? 'text' : 'password'} />
+                <Input
+                  onChange={(e) => handleOnChange(e)}
+                  type={showPassword ? 'text' : 'password'}
+                />
                 <InputRightElement h={'full'}>
                   <Button
                     variant={'ghost'}
@@ -80,6 +103,7 @@ export default function Register() {
                 size="lg"
                 bg={'blue.400'}
                 color={'white'}
+                onClick={registration}
                 _hover={{
                   bg: 'blue.500',
                 }}>

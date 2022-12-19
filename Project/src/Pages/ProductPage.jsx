@@ -2,11 +2,12 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import { Flex, Grid, GridItem } from '@chakra-ui/react';
 import ProductCard from '../Components/ProductCard';
+import Footer from '../Components/Footer';
 const ProductPage = () => {
   const [data, setData] = React.useState([]);
   useEffect(() => {
     axios.get(`http://localhost:3000/sephora`).then((res) => {
-      //consoel.log(res.data)
+      console.log(res.data);
       setData(res.data);
     });
   }, []);
@@ -22,9 +23,9 @@ const ProductPage = () => {
                 <ProductCard
                   //   category={e.category}
                   image={e.image}
-                   id={e.id}
-                  // description={e.description}
-                   title={e.title}
+                  id={e.id}
+                  prodname={e.prodname}
+                  title={e.title}
                   price={e.price}
                   // rating={e.rating.rate}
                   // count={e.rating.count}
@@ -33,6 +34,7 @@ const ProductPage = () => {
             );
           })}
       </Grid>
+      <Footer />
     </div>
   );
 };

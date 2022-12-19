@@ -12,8 +12,50 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { Navigate } from 'react-router-dom';
 
 export default function Login() {
+  const [form, setForm] = useState({});
+  const [data, setData] = useState([]);
+  const handleOnChange = (e) => {
+    setForm({ ...form, [e.target.id]: e.target.value });
+    console.log(form);
+  };
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/register`)
+      .then((res) => {
+        console.log(res.data);
+        setData(res.data);
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
+
+  function signIn() {
+    return (
+      <div>
+        {data &&
+          data?.length > 0 &&
+          data.map((e) => {
+            if (e.email == form.email && e.password == form.password) {
+              // return <Navigate to="/products" />;
+              window.location.href = 'http://localhost:3001/products';
+            } else {
+              console.log('failure');
+            }
+          })}
+      </div>
+    );
+  }
+
+  console.log(data);
   return (
     <Flex
       minH={'100vh'}
@@ -23,9 +65,6 @@ export default function Login() {
       <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
         <Stack align={'center'}>
           <Heading fontSize={'4xl'}>Sign in to your account</Heading>
-          <Text fontSize={'lg'} color={'gray.600'}>
-            to enjoy all of our cool <Link color={'blue.400'}>features</Link> ✌️
-          </Text>
         </Stack>
         <Box
           rounded={'lg'}
@@ -35,11 +74,11 @@ export default function Login() {
           <Stack spacing={4}>
             <FormControl id="email">
               <FormLabel>Email address</FormLabel>
-              <Input type="email" />
+              <Input onChange={(e) => handleOnChange(e)} type="email" />
             </FormControl>
             <FormControl id="password">
               <FormLabel>Password</FormLabel>
-              <Input type="password" />
+              <Input onChange={(e) => handleOnChange(e)} type="password" />
             </FormControl>
             <Stack spacing={10}>
               <Stack
@@ -51,6 +90,7 @@ export default function Login() {
               </Stack>
               <Button
                 bg={'blue.400'}
+                onClick={signIn}
                 color={'white'}
                 _hover={{
                   bg: 'blue.500',

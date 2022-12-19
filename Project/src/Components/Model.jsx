@@ -11,6 +11,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 function ModelPage() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -18,9 +19,9 @@ function ModelPage() {
 
   return (
     <>
-      <Box ref={finalRef} tabIndex={-1} aria-label="Focus moved to this box">
+      {/* <Box ref={finalRef} tabIndex={-1} aria-label="Focus moved to this box">
         Some other content that'll receive focus on close.
-      </Box>
+      </Box> */}
 
       <Button mt={4} onClick={onOpen}>
         Place Order
@@ -31,13 +32,14 @@ function ModelPage() {
           <ModalHeader> Order Placed Successfully</ModalHeader>
           <ModalCloseButton />
           <ModalBody>{/* <Lorem count={2} /> */}</ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Keep Shopping
-            </Button>
-            <Button variant="ghost">Secondary Action</Button>
-          </ModalFooter>
+          <RouterLink to="/">
+            <ModalFooter>
+              <Button colorScheme="blue" mr={3} onClick={onClose}>
+                Keep Shopping
+              </Button>
+              {/* <Button variant="ghost">Secondary Action</Button> */}
+            </ModalFooter>
+          </RouterLink>
         </ModalContent>
       </Modal>
     </>

@@ -20,6 +20,10 @@ import {
 } from '@chakra-ui/react';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { FaCartArrowDown } from 'react-icons/fa';
+import TabComponent from './TabComponent';
+// import Dropdown from '../Components/Dropdown';
+// import DropdownEx from './DropdownEx';
+
 const NavLink = ({ children }) => (
   <Link
     px={2}
@@ -47,9 +51,17 @@ export default function Navbar() {
           <RouterLink to="/">
             <Text>Home</Text>
           </RouterLink>
+
           <RouterLink to="/products">
-            <Text>Product</Text>
+            <Text>Cosmetics</Text>
           </RouterLink>
+
+          <Text>MakeUp</Text>
+          <Text>HareCare</Text>
+          <Text>SkinCare</Text>
+          <Text>Brands</Text>
+          <Text>Tools & Brushes</Text>
+
           <Flex alignItems={'center'}>
             <FaCartArrowDown size="30" />
             <RouterLink to="/login">

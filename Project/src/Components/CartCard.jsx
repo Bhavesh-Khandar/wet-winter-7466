@@ -2,7 +2,7 @@ import {
   Box,
   Button,
   Center,
-    Flex,
+  Flex,
   Text,
   Heading,
   Image,
@@ -10,10 +10,18 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 
-import ModelPage from '../Components/Model';
-export default function CartCard({ cartdata }) {
+export default function CartCard({ cartdata, removeproddefination }) {
   //  const [counter, setCounter] = useState(1);
-  console.log(cartdata.image);
+  // console.log(cartdata.image);
+  // const disprice = Number(cartdata.price) * 1.7;
+  let amt = cartdata.price.split(' ');
+  let exct = amt[1].split(',');
+  let disprice = +exct.join('');
+  console.log(disprice);
+  const removeprod = (e) => {
+    console.log('removeprod');
+    removeproddefination();
+  };
   return (
     <Center py={12}>
       <Box
@@ -25,12 +33,14 @@ export default function CartCard({ cartdata }) {
         boxShadow={'2xl'}
         rounded={'lg'}
         pos={'relative'}
+        height={'auto'}
+        key={cartdata.id}
         zIndex={1}>
         <Box
           rounded={'lg'}
           mt={-12}
           pos={'relative'}
-          height={'230px'}
+          height={'auto'}
           _after={{
             transition: 'all .3s ease',
             content: '""',
@@ -50,7 +60,7 @@ export default function CartCard({ cartdata }) {
           }}>
           <Image
             rounded={'lg'}
-            height={230}
+            height={'auto'}
             width={282}
             objectFit={'cover'}
             src={cartdata.image}
@@ -58,10 +68,10 @@ export default function CartCard({ cartdata }) {
         </Box>
         <Stack pt={10} align={'center'}>
           <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
-            Brand
+            {cartdata.brand}
           </Text>
           <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
-            Nice Chair, pink
+            {cartdata.prodname}
           </Heading>
           {/* <Flex>
             <Button disabled={counter <= 0} onClick={() => handleCount(-1)}>
@@ -78,11 +88,11 @@ export default function CartCard({ cartdata }) {
               {cartdata.price}
             </Text>
             <Text textDecoration={'line-through'} color={'gray.600'}>
-              {cartdata.price}
+              Rs.{disprice * 1.7}
             </Text>
           </Stack>
-          <ModelPage />
         </Stack>
+        <Button onClick={removeprod}>Remove</Button>
       </Box>
     </Center>
   );

@@ -14,7 +14,7 @@ const IMAGE =
 export default function ProductCard({
   id,
   image,
-  description,
+  prodname,
   category,
   title,
   price,
@@ -75,6 +75,12 @@ export default function ProductCard({
               textTransform={'uppercase'}>
               {category}
             </Text>
+            <Text
+              color={'gray.500'}
+              fontSize={'sm'}
+              textTransform={'uppercase'}>
+              {prodname}
+            </Text>
             <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
               {title}
             </Heading>
@@ -82,11 +88,9 @@ export default function ProductCard({
               <Text fontWeight={800} fontSize={'xl'}>
                 {price}
               </Text>
-              <Text textDecoration={'line-through'} color={'gray.600'}>
+              {/* <Text textDecoration={'line-through'} color={'gray.600'}>
                 {Math.round(disprice, 2)}
-              </Text>
-              <Text>Rating:{rating}</Text>
-              <Text>Available:{count}</Text>
+              </Text> */}
             </Stack>
           </Stack>
         </Box>
