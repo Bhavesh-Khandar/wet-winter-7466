@@ -23,7 +23,7 @@ export default function CartPage() {
   console.log('totalcurrent', total.current);
   const getCartData = () => {
     console.log('getCartData');
-    axios.get(`http://localhost:3000/cart`).then(({ data }) => {
+    axios.get(`https://silly-boa-scarf.cyclic.app/cart`).then(({ data }) => {
       setCart(data);
       console.log('data length', data.length);
       // setTotal(data.length);
@@ -31,7 +31,7 @@ export default function CartPage() {
   };
   useEffect(() => {
     getCartData();
-  }, []);
+  }, [cart]);
 
   console.log(cart);
   const removeproddefination = (e) => {
@@ -39,13 +39,14 @@ export default function CartPage() {
     let id = e.id;
 
     axios
-      .delete(`http://localhost:3000/cart/${id}`)
+      .delete(`https://silly-boa-scarf.cyclic.app/cart/${id}`)
       .then(function (response) {
         console.log('delete', response);
         getCartData();
       })
       .catch(function (error) {
         console.log(error);
+        getCartData();
       });
   };
   return (

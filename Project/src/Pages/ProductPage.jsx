@@ -6,7 +6,7 @@ import Footer from '../Components/Footer';
 const ProductPage = () => {
   const [data, setData] = React.useState([]);
   useEffect(() => {
-    axios.get(`http://localhost:3000/sephora`).then((res) => {
+    axios.get(`https://silly-boa-scarf.cyclic.app/sephora`).then((res) => {
       console.log(res.data);
       setData(res.data);
     });

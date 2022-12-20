@@ -28,7 +28,7 @@ export default function ProductDetails() {
   console.log(id);
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/sephora/${id}`)
+      .get(`https://silly-boa-scarf.cyclic.app/sephora/${id}`)
       .then(({ data }) => {
         setProducts(data);
       })
@@ -48,7 +48,7 @@ export default function ProductDetails() {
   function addtocartrequest(id) {
     console.log(id);
     axios
-      .post('http://localhost:3000/cart', product)
+      .post('https://silly-boa-scarf.cyclic.app/cart', product)
       .then(function (response) {
         console.log(response);
       })

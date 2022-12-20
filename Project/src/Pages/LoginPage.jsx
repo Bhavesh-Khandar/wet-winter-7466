@@ -31,7 +31,7 @@ export default function Login() {
   };
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/register`)
+      .get(`https://silly-boa-scarf.cyclic.app/register`)
       .then((res) => {
         console.log(res.data);
         setData(res.data);

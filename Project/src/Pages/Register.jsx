@@ -29,7 +29,7 @@ export default function Register() {
   function registration() {
     // console.log(id);
     axios
-      .post('http://localhost:3000/register', {
+      .post('https://silly-boa-scarf.cyclic.app/register', {
         firstName: form.firstName,
         lastName: form.lastName,
         email: form.email,
