@@ -42,12 +42,11 @@ export default function CartPage() {
       .delete(`https://silly-boa-scarf.cyclic.app/cart/${id}`)
       .then(function (response) {
         console.log('delete', response);
-        getCartData();
       })
       .catch(function (error) {
         console.log(error);
-        getCartData();
       });
+    getCartData();
   };
   return (
     <div>
